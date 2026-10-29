@@ -7,106 +7,128 @@
 <meta name="description" content="Carreras del ISFDyT N.º 166: planes de estudio y correlatividades.">
 <style>
   :root {
-    --bg: #f6f7f9;
+    --bg: #eef1f5;
     --card: #ffffff;
-    --text: #1d2430;
-    --muted: #5d6877;
-    --line: #dde1e7;
-    --accent: #2f6fb0;
-    --general: #3a7bd5;
-    --fundamento: #8e5bd0;
-    --tecnico: #1f9d7a;
-    --practica: #e08a1e;
-    --sel: #1d2430;
-    --req: #e2b400;
-    --hab: #2aa44f;
+    --text: #0f1722;
+    --muted: #3f4a5a;
+    --line: #b9c2cf;
+    --accent: #1a5896;
+    --general: #1f63c9;
+    --fundamento: #7a3fc4;
+    --tecnico: #0b7d5e;
+    --practica: #c46a00;
+    --sel: #0f1722;
+    --sel-text: #ffffff;
+    --req-bg: #ffd84d;
+    --req-line: #8a6500;
+    --hab-bg: #7fdc9b;
+    --hab-line: #0d6b30;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #12161c;
-      --card: #1b2129;
-      --text: #e8ecf1;
-      --muted: #9aa5b4;
-      --line: #2c3541;
-      --accent: #6aa5e6;
-      --general: #5b9bf0;
-      --fundamento: #b08af0;
-      --tecnico: #3fc9a1;
-      --practica: #f0a742;
-      --sel: #e8ecf1;
-      --req: #f0c829;
-      --hab: #46c26d;
+      --bg: #0e1218;
+      --card: #171d26;
+      --text: #f2f5f9;
+      --muted: #c0c9d6;
+      --line: #46526a;
+      --accent: #8ec0f5;
+      --general: #6aa6ff;
+      --fundamento: #b999f5;
+      --tecnico: #3fd6a8;
+      --practica: #ffb04d;
+      --sel: #f2f5f9;
+      --sel-text: #0e1218;
+      --req-bg: #7a5d00;
+      --req-line: #ffd84d;
+      --hab-bg: #14683a;
+      --hab-line: #6fe39a;
     }
   }
   * { box-sizing: border-box; }
+  html { font-size: 17px; -webkit-text-size-adjust: 100%; }
+  @media (max-width: 640px) { html { font-size: 18px; } }
   body {
     margin: 0; background: var(--bg); color: var(--text);
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    line-height: 1.4;
+    line-height: 1.35;
   }
-  header { padding: 28px 16px 8px; text-align: center; }
-  header h1 { margin: 0; font-size: 1.6rem; }
-  header p { margin: 6px 0 0; color: var(--muted); }
-  main { max-width: 1100px; margin: 0 auto; padding: 16px; }
+  header { padding: 24px 12px 6px; text-align: center; }
+  header h1 { margin: 0; font-size: 1.7rem; }
+  header p { margin: 6px 0 0; color: var(--muted); font-size: 1.05rem; }
+  main { max-width: 1100px; margin: 0 auto; padding: 12px; }
 
   /* Inicio: botones de carreras */
   .carreras { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 12px; }
   .carrera-btn {
-    background: var(--card); color: var(--text); border: 1px solid var(--line);
-    border-radius: 12px; padding: 18px 22px; font: inherit; font-weight: 600;
-    cursor: pointer; min-width: 220px; max-width: 320px; text-align: center;
+    background: var(--card); color: var(--text); border: 2px solid var(--line);
+    border-radius: 12px; padding: 20px 24px; font: inherit; font-size: 1.1rem; font-weight: 700;
+    cursor: pointer; min-width: 240px; max-width: 360px; text-align: center;
   }
-  .carrera-btn small { display: block; font-weight: 400; color: var(--muted); margin-top: 4px; }
-  .carrera-btn:hover, .carrera-btn:focus-visible { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
+  .carrera-btn small { display: block; font-weight: 500; font-size: .9rem; color: var(--muted); margin-top: 6px; }
+  .carrera-btn:hover, .carrera-btn:focus-visible { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent); }
 
   /* Plan */
   .volver {
-    background: none; border: none; color: var(--accent); font: inherit;
-    cursor: pointer; padding: 4px 0; margin-bottom: 8px;
+    background: none; border: none; color: var(--accent); font: inherit; font-weight: 600;
+    cursor: pointer; padding: 8px 0; margin-bottom: 4px;
   }
-  h2 { margin: 0 0 4px; font-size: 1.4rem; }
-  .sub { color: var(--muted); margin: 0 0 16px; }
-  .leyenda { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0 0 16px; font-size: .85rem; color: var(--muted); }
-  .leyenda span { display: inline-flex; align-items: center; gap: 6px; }
-  .dot { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
-  .ayuda { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin-bottom: 16px; font-size: .92rem; min-height: 44px; }
-  .ayuda b { font-weight: 650; }
+  h2 { margin: 0 0 4px; font-size: 1.5rem; line-height: 1.2; }
+  .sub { color: var(--muted); margin: 0 0 14px; }
+  .leyenda { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0 0 10px; font-size: .92rem; color: var(--text); }
+  .leyenda span { display: inline-flex; align-items: center; gap: 7px; }
+  .dot { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+  .nota { margin: 0 0 14px; font-size: .88rem; color: var(--muted); }
+  .ayuda { background: var(--card); border: 2px solid var(--line); border-radius: 10px; padding: 12px 14px; margin-bottom: 16px; font-size: 1rem; min-height: 52px; }
+  .ayuda b { font-weight: 700; }
+  .ayuda .tip { margin-top: 8px; font-size: .88rem; color: var(--muted); }
 
-  .anio { background: var(--card); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 18px; overflow: hidden; }
-  .anio h3 { margin: 0; padding: 10px 16px; background: color-mix(in srgb, var(--accent) 14%, var(--card)); font-size: 1.05rem; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
-  .anio h3 span { font-weight: 400; color: var(--muted); font-size: .9rem; }
-  /* Ancho proporcional a la carga horaria: 64 hs = 1 unidad, 128 hs = 2, 192 hs = 3 */
-  .materias { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; padding: 14px; }
-  .materia { grid-column: span var(--u, 1); }
-  /* En pantallas angostas (1 columna) la proporción pasa a la altura */
-  @media (max-width: 640px) {
-    .materias { grid-template-columns: 1fr; }
-    .materias .materia { grid-column: auto; min-height: calc(var(--u, 1) * 72px); }
-  }
+  .anio { background: var(--card); border: 2px solid var(--line); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+  .anio h3 { margin: 0; padding: 10px 14px; background: color-mix(in srgb, var(--accent) 22%, var(--card)); font-size: 1.15rem; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+  .anio h3 span { font-weight: 500; color: var(--muted); font-size: .95rem; }
 
+  /* Ancho proporcional a la carga horaria (64 hs = 1, 128 hs = 2, 192 hs = 3).
+     Con flex las filas se llenan solas y no quedan huecos. */
+  .materias { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px; }
   .materia {
-    text-align: left; font: inherit; color: var(--text); background: var(--bg);
-    border: 1px solid var(--line); border-left: 6px solid var(--c);
-    border-radius: 8px; padding: 10px 12px; cursor: pointer; min-height: 72px;
+    flex: var(--u, 1) 1 calc(var(--u, 1) * 150px); min-width: 0;
+    text-align: left; font: inherit; color: var(--text);
+    background: color-mix(in srgb, var(--c) 13%, var(--card));
+    border: 2px solid color-mix(in srgb, var(--c) 55%, var(--card));
+    border-left: 8px solid var(--c);
+    border-radius: 8px; padding: 10px 12px; cursor: pointer; min-height: 84px;
     display: flex; flex-direction: column; justify-content: space-between; gap: 6px;
-    transition: opacity .15s, background .15s, transform .1s;
+    hyphens: auto; overflow-wrap: anywhere;
+    transition: opacity .15s, background .15s;
   }
-  .materia .nom { font-weight: 600; font-size: .95rem; }
-  .materia .hs { font-size: .78rem; color: var(--muted); }
+  .materia .nom { font-weight: 700; font-size: 1.05rem; line-height: 1.2; }
+  .materia .hs { font-size: .9rem; color: var(--muted); font-weight: 500; }
   .materia:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
   .materia[data-campo="General"] { --c: var(--general); }
   .materia[data-campo="Fundamento"] { --c: var(--fundamento); }
   .materia[data-campo="Técnico Específico"] { --c: var(--tecnico); }
   .materia[data-campo="Práctica"] { --c: var(--practica); }
 
-  .con-seleccion .materia { opacity: .35; }
-  .con-seleccion .materia.sel, .con-seleccion .materia.req, .con-seleccion .materia.hab { opacity: 1; }
-  .materia.sel { background: var(--sel); color: var(--bg); border-color: var(--sel); }
-  .materia.sel .hs { color: var(--bg); opacity: .8; }
-  .materia.req { background: color-mix(in srgb, var(--req) 40%, var(--card)); border-color: var(--req); }
-  .materia.hab { background: color-mix(in srgb, var(--hab) 35%, var(--card)); border-color: var(--hab); }
+  /* Celular: 2 columnas; 64 hs = media fila, 128 y 192 hs = fila completa */
+  @media (max-width: 640px) {
+    main { padding: 10px; }
+    .materias { gap: 6px; }
+    .materia { min-height: 80px; padding: 9px 8px 9px 9px; border-left-width: 6px; }
+    .materia .nom { font-size: 1rem; }
+    .materias { padding: 8px 6px; }
+    .materia[data-u="1"] { flex: 1 1 calc(50% - 3px); }
+    .materia:not([data-u="1"]) { flex: 1 1 100%; }
+    .materia[data-u="3"] { min-height: 112px; }
+  }
 
-  footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 24px 16px 40px; }
+  .con-seleccion .materia { opacity: .42; }
+  .con-seleccion .materia.sel, .con-seleccion .materia.req, .con-seleccion .materia.hab { opacity: 1; }
+  .materia.sel { background: var(--sel); color: var(--sel-text); border-color: var(--sel); border-left-color: var(--c); }
+  .materia.sel .hs { color: var(--sel-text); opacity: .85; }
+  .materia.req { background: var(--req-bg); border-color: var(--req-line); border-left-color: var(--req-line); }
+  .materia.hab { background: var(--hab-bg); border-color: var(--hab-line); border-left-color: var(--hab-line); }
+  .materia.req .hs, .materia.hab .hs { color: var(--text); }
+
+  footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 20px 12px 36px; }
   [hidden] { display: none !important; }
 </style>
 </head>
@@ -128,6 +150,7 @@
     <p class="sub" id="subCarrera"></p>
 
     <div class="leyenda" id="leyenda"></div>
+    <p class="nota">El tamaño de cada rectángulo es proporcional a su carga horaria.</p>
     <div class="ayuda" id="ayuda" aria-live="polite"></div>
     <div id="anios"></div>
   </section>
@@ -247,7 +270,6 @@
       s.appendChild(d); s.appendChild(document.createTextNode('Campo ' + (k === 'General' ? 'General' : k === 'Fundamento' ? 'del Fundamento' : k === 'Práctica' ? 'de la Práctica' : 'Técnico Específico')));
       ley.appendChild(s);
     });
-    ley.appendChild(el('span', null, 'El tamaño de cada rectángulo es proporcional a su carga horaria'));
 
     anios.innerHTML = '';
     c.anios.forEach(function (a) {
@@ -262,7 +284,9 @@
         b.type = 'button';
         b.dataset.id = m.id;
         b.dataset.campo = m.campo;
-        b.style.setProperty('--u', Math.max(1, Math.round(m.hs / 64)));
+        var u = Math.max(1, Math.round(m.hs / 64));
+        b.style.setProperty('--u', u);
+        b.dataset.u = u;
         b.appendChild(el('span', 'nom', m.nombre));
         b.appendChild(el('span', 'hs', m.hs + ' hs'));
         b.addEventListener('click', function () { elegir(m.id); });
@@ -316,7 +340,7 @@
       : 'No es requisito de ninguna otra materia.'));
     ayuda.appendChild(p2);
     var p3 = el('div');
-    p3.style.cssText = 'margin-top:6px;font-size:.82rem;color:var(--muted)';
+    p3.className = 'tip';
     p3.textContent = 'Amarillo: la tenés que tener aprobada antes. Verde: la habilita. Tocá de nuevo para limpiar.';
     ayuda.appendChild(p3);
   }
