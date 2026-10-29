@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carreras · ISFDyT N.º 166</title>
+<meta name="description" content="Carreras del ISFDyT N.º 166: planes de estudio y correlatividades.">
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --text: #1d2430;
+    --muted: #5d6877;
+    --line: #dde1e7;
+    --accent: #2f6fb0;
+    --general: #3a7bd5;
+    --fundamento: #8e5bd0;
+    --tecnico: #1f9d7a;
+    --practica: #e08a1e;
+    --sel: #1d2430;
+    --req: #e2b400;
+    --hab: #2aa44f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12161c;
+      --card: #1b2129;
+      --text: #e8ecf1;
+      --muted: #9aa5b4;
+      --line: #2c3541;
+      --accent: #6aa5e6;
+      --general: #5b9bf0;
+      --fundamento: #b08af0;
+      --tecnico: #3fc9a1;
+      --practica: #f0a742;
+      --sel: #e8ecf1;
+      --req: #f0c829;
+      --hab: #46c26d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.4;
+  }
+  header { padding: 28px 16px 8px; text-align: center; }
+  header h1 { margin: 0; font-size: 1.6rem; }
+  header p { margin: 6px 0 0; color: var(--muted); }
+  main { max-width: 1100px; margin: 0 auto; padding: 16px; }
+
+  /* Inicio: botones de carreras */
+  .carreras { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 12px; }
+  .carrera-btn {
+    background: var(--card); color: var(--text); border: 1px solid var(--line);
+    border-radius: 12px; padding: 18px 22px; font: inherit; font-weight: 600;
+    cursor: pointer; min-width: 220px; max-width: 320px; text-align: center;
+  }
+  .carrera-btn small { display: block; font-weight: 400; color: var(--muted); margin-top: 4px; }
+  .carrera-btn:hover, .carrera-btn:focus-visible { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
+
+  /* Plan */
+  .volver {
+    background: none; border: none; color: var(--accent); font: inherit;
+    cursor: pointer; padding: 4px 0; margin-bottom: 8px;
+  }
+  h2 { margin: 0 0 4px; font-size: 1.4rem; }
+  .sub { color: var(--muted); margin: 0 0 16px; }
+  .leyenda { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0 0 16px; font-size: .85rem; color: var(--muted); }
+  .leyenda span { display: inline-flex; align-items: center; gap: 6px; }
+  .dot { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  .ayuda { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin-bottom: 16px; font-size: .92rem; min-height: 44px; }
+  .ayuda b { font-weight: 650; }
+
+  .anio { background: var(--card); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 18px; overflow: hidden; }
+  .anio h3 { margin: 0; padding: 10px 16px; background: color-mix(in srgb, var(--accent) 14%, var(--card)); font-size: 1.05rem; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+  .anio h3 span { font-weight: 400; color: var(--muted); font-size: .9rem; }
+  /* Ancho proporcional a la carga horaria: 64 hs = 1 unidad, 128 hs = 2, 192 hs = 3 */
+  .materias { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; padding: 14px; }
+  .materia { grid-column: span var(--u, 1); }
+  /* En pantallas angostas (1 columna) la proporción pasa a la altura */
+  @media (max-width: 640px) {
+    .materias { grid-template-columns: 1fr; }
+    .materias .materia { grid-column: auto; min-height: calc(var(--u, 1) * 72px); }
+  }
+
+  .materia {
+    text-align: left; font: inherit; color: var(--text); background: var(--bg);
+    border: 1px solid var(--line); border-left: 6px solid var(--c);
+    border-radius: 8px; padding: 10px 12px; cursor: pointer; min-height: 72px;
+    display: flex; flex-direction: column; justify-content: space-between; gap: 6px;
+    transition: opacity .15s, background .15s, transform .1s;
+  }
+  .materia .nom { font-weight: 600; font-size: .95rem; }
+  .materia .hs { font-size: .78rem; color: var(--muted); }
+  .materia:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .materia[data-campo="General"] { --c: var(--general); }
+  .materia[data-campo="Fundamento"] { --c: var(--fundamento); }
+  .materia[data-campo="Técnico Específico"] { --c: var(--tecnico); }
+  .materia[data-campo="Práctica"] { --c: var(--practica); }
+
+  .con-seleccion .materia { opacity: .35; }
+  .con-seleccion .materia.sel, .con-seleccion .materia.req, .con-seleccion .materia.hab { opacity: 1; }
+  .materia.sel { background: var(--sel); color: var(--bg); border-color: var(--sel); }
+  .materia.sel .hs { color: var(--bg); opacity: .8; }
+  .materia.req { background: color-mix(in srgb, var(--req) 40%, var(--card)); border-color: var(--req); }
+  .materia.hab { background: color-mix(in srgb, var(--hab) 35%, var(--card)); border-color: var(--hab); }
+
+  footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 24px 16px 40px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ISFDyT N.º 166</h1>
+  <p id="subtitulo">Nuestras carreras</p>
+</header>
+
+<main>
+  <section id="inicio">
+    <div class="carreras" id="listaCarreras"></div>
+  </section>
+
+  <section id="plan" hidden>
+    <button class="volver" id="volver" type="button">← Volver a las carreras</button>
+    <h2 id="tituloCarrera"></h2>
+    <p class="sub" id="subCarrera"></p>
+
+    <div class="leyenda" id="leyenda"></div>
+    <div class="ayuda" id="ayuda" aria-live="polite"></div>
+    <div id="anios"></div>
+  </section>
+</main>
+
+<footer>Información orientativa. Consultá el plan oficial en el instituto.</footer>
+
+<!-- ============================================================
+     DATOS: para agregar otra carrera, copiá un bloque dentro de
+     "carreras" y cambiá el contenido. Cada materia tiene:
+       id          identificador único (sin espacios)
+       nombre      como se muestra
+       hs          horas
+       campo       General | Fundamento | Técnico Específico | Práctica
+       correlativas  lista de ids que deben estar aprobadas
+     ============================================================ -->
+<script type="application/json" id="datos">
+{
+  "carreras": [
+    {
+      "id": "analisis-de-sistemas",
+      "nombre": "Tecnicatura Superior en Análisis de Sistemas",
+      "duracion": "3 años",
+      "anios": [
+        {
+          "titulo": "1.º año",
+          "materias": [
+            { "id": "ingles1", "nombre": "Inglés I", "hs": 64, "campo": "General", "correlativas": [] },
+            { "id": "cts", "nombre": "Ciencia, Tecnología y Sociedad", "hs": 64, "campo": "General", "correlativas": [] },
+            { "id": "am1", "nombre": "Análisis Matemático I", "hs": 64, "campo": "Fundamento", "correlativas": [] },
+            { "id": "algebra", "nombre": "Álgebra", "hs": 64, "campo": "Fundamento", "correlativas": [] },
+            { "id": "aed1", "nombre": "Algoritmos y estructuras de datos I", "hs": 128, "campo": "Técnico Específico", "correlativas": [] },
+            { "id": "syo", "nombre": "Sistemas y Organizaciones", "hs": 64, "campo": "Técnico Específico", "correlativas": [] },
+            { "id": "arq", "nombre": "Arquitectura de Computadores", "hs": 64, "campo": "Técnico Específico", "correlativas": [] },
+            { "id": "pp1", "nombre": "Prácticas Profesionalizantes I", "hs": 64, "campo": "Práctica", "correlativas": [] }
+          ]
+        },
+        {
+          "titulo": "2.º año",
+          "materias": [
+            { "id": "ingles2", "nombre": "Inglés II", "hs": 64, "campo": "General", "correlativas": ["ingles1"] },
+            { "id": "am2", "nombre": "Análisis Matemático II", "hs": 64, "campo": "Fundamento", "correlativas": ["am1", "algebra"] },
+            { "id": "estadistica", "nombre": "Estadística", "hs": 64, "campo": "Fundamento", "correlativas": ["am1", "algebra"] },
+            { "id": "is1", "nombre": "Ingeniería de Software I", "hs": 64, "campo": "Técnico Específico", "correlativas": ["syo"] },
+            { "id": "aed2", "nombre": "Algoritmos y estructuras de datos II", "hs": 128, "campo": "Técnico Específico", "correlativas": ["aed1"] },
+            { "id": "so", "nombre": "Sistemas Operativos", "hs": 64, "campo": "Técnico Específico", "correlativas": ["arq"] },
+            { "id": "bd", "nombre": "Base de Datos", "hs": 64, "campo": "Técnico Específico", "correlativas": ["aed1"] },
+            { "id": "pp2", "nombre": "Prácticas Profesionalizantes II", "hs": 128, "campo": "Práctica", "correlativas": ["pp1", "syo"] }
+          ]
+        },
+        {
+          "titulo": "3.º año",
+          "materias": [
+            { "id": "ingles3", "nombre": "Inglés III", "hs": 64, "campo": "General", "correlativas": ["ingles2"] },
+            { "id": "legales", "nombre": "Aspectos legales de la Profesión", "hs": 64, "campo": "Fundamento", "correlativas": [] },
+            { "id": "seminario", "nombre": "Seminario de actualización", "hs": 64, "campo": "Técnico Específico", "correlativas": [] },
+            { "id": "redes", "nombre": "Redes y Comunicaciones", "hs": 64, "campo": "Técnico Específico", "correlativas": ["so"] },
+            { "id": "is2", "nombre": "Ingeniería de Software II", "hs": 64, "campo": "Técnico Específico", "correlativas": ["is1"] },
+            { "id": "aed3", "nombre": "Algoritmos y estructuras de datos III", "hs": 128, "campo": "Técnico Específico", "correlativas": ["aed2", "am1"] },
+            { "id": "pp3", "nombre": "Prácticas Profesionalizantes III", "hs": 192, "campo": "Práctica", "correlativas": ["pp2", "aed2", "bd", "is1"] }
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  var DATOS = JSON.parse(document.getElementById('datos').textContent);
+  var CAMPOS = {
+    'General': 'var(--general)',
+    'Fundamento': 'var(--fundamento)',
+    'Técnico Específico': 'var(--tecnico)',
+    'Práctica': 'var(--practica)'
+  };
+  var AYUDA_INICIAL = 'Tocá una materia para ver sus correlativas.';
+
+  var $ = function (id) { return document.getElementById(id); };
+  var inicio = $('inicio'), plan = $('plan'), anios = $('anios'), ayuda = $('ayuda');
+  var carreraActual = null, seleccion = null, porId = {};
+
+  function el(tag, cls, txt) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (txt != null) e.textContent = txt;
+    return e;
+  }
+
+  // ---------- Inicio ----------
+  function dibujarInicio() {
+    var lista = $('listaCarreras');
+    lista.innerHTML = '';
+    DATOS.carreras.forEach(function (c) {
+      var b = el('button', 'carrera-btn', c.nombre);
+      b.type = 'button';
+      b.appendChild(el('small', null, 'Duración: ' + c.duracion));
+      b.addEventListener('click', function () { location.hash = '#/' + c.id; });
+      lista.appendChild(b);
+    });
+  }
+
+  // ---------- Plan ----------
+  function mostrarCarrera(c) {
+    carreraActual = c; seleccion = null; porId = {};
+    c.anios.forEach(function (a) { a.materias.forEach(function (m) { porId[m.id] = m; }); });
+
+    $('tituloCarrera').textContent = c.nombre;
+    $('subCarrera').textContent = 'Duración: ' + c.duracion;
+
+    var ley = $('leyenda');
+    ley.innerHTML = '';
+    Object.keys(CAMPOS).forEach(function (k) {
+      var s = el('span');
+      var d = el('i', 'dot'); d.style.background = CAMPOS[k];
+      s.appendChild(d); s.appendChild(document.createTextNode('Campo ' + (k === 'General' ? 'General' : k === 'Fundamento' ? 'del Fundamento' : k === 'Práctica' ? 'de la Práctica' : 'Técnico Específico')));
+      ley.appendChild(s);
+    });
+    ley.appendChild(el('span', null, 'El tamaño de cada rectángulo es proporcional a su carga horaria'));
+
+    anios.innerHTML = '';
+    c.anios.forEach(function (a) {
+      var total = a.materias.reduce(function (s, m) { return s + m.hs; }, 0);
+      var sec = el('section', 'anio');
+      var h = el('h3', null, a.titulo);
+      h.appendChild(el('span', null, 'Total: ' + total + ' hs'));
+      sec.appendChild(h);
+      var grid = el('div', 'materias');
+      a.materias.forEach(function (m) {
+        var b = el('button', 'materia');
+        b.type = 'button';
+        b.dataset.id = m.id;
+        b.dataset.campo = m.campo;
+        b.style.setProperty('--u', Math.max(1, Math.round(m.hs / 64)));
+        b.appendChild(el('span', 'nom', m.nombre));
+        b.appendChild(el('span', 'hs', m.hs + ' hs'));
+        b.addEventListener('click', function () { elegir(m.id); });
+        grid.appendChild(b);
+      });
+      sec.appendChild(grid);
+      anios.appendChild(sec);
+    });
+    pintar();
+  }
+
+  function elegir(id) {
+    seleccion = (seleccion === id) ? null : id;
+    pintar();
+  }
+
+  function nombres(ids) {
+    return ids.map(function (i) { return porId[i].nombre; }).join(', ');
+  }
+
+  function pintar() {
+    var req = [], hab = [];
+    if (seleccion) {
+      req = porId[seleccion].correlativas;
+      Object.keys(porId).forEach(function (id) {
+        if (porId[id].correlativas.indexOf(seleccion) !== -1) hab.push(id);
+      });
+    }
+    anios.classList.toggle('con-seleccion', !!seleccion);
+    var botones = anios.querySelectorAll('.materia');
+    for (var i = 0; i < botones.length; i++) {
+      var b = botones[i], id = b.dataset.id;
+      b.classList.toggle('sel', id === seleccion);
+      b.classList.toggle('req', req.indexOf(id) !== -1);
+      b.classList.toggle('hab', hab.indexOf(id) !== -1);
+      b.setAttribute('aria-pressed', id === seleccion ? 'true' : 'false');
+    }
+
+    ayuda.innerHTML = '';
+    if (!seleccion) { ayuda.textContent = AYUDA_INICIAL; return; }
+    var m = porId[seleccion];
+    var p1 = el('div');
+    p1.appendChild(el('b', null, m.nombre + ': '));
+    p1.appendChild(document.createTextNode(req.length
+      ? 'para aprobarla necesitás tener aprobada ' + nombres(req) + '.'
+      : 'no tiene correlativas previas.'));
+    ayuda.appendChild(p1);
+    var p2 = el('div');
+    p2.appendChild(document.createTextNode(hab.length
+      ? 'Es requisito para: ' + nombres(hab) + '.'
+      : 'No es requisito de ninguna otra materia.'));
+    ayuda.appendChild(p2);
+    var p3 = el('div');
+    p3.style.cssText = 'margin-top:6px;font-size:.82rem;color:var(--muted)';
+    p3.textContent = 'Amarillo: la tenés que tener aprobada antes. Verde: la habilita. Tocá de nuevo para limpiar.';
+    ayuda.appendChild(p3);
+  }
+
+  // ---------- Navegación por hash (#/id-de-carrera) ----------
+  function ruta() {
+    var id = location.hash.replace(/^#\//, '');
+    var c = DATOS.carreras.filter(function (x) { return x.id === id; })[0];
+    if (c) {
+      inicio.hidden = true; plan.hidden = false;
+      document.title = c.nombre + ' · ISFDyT N.º 166';
+      mostrarCarrera(c);
+      window.scrollTo(0, 0);
+    } else {
+      plan.hidden = true; inicio.hidden = false;
+      document.title = 'Carreras · ISFDyT N.º 166';
+    }
+  }
+
+  $('volver').addEventListener('click', function () { location.hash = ''; });
+  window.addEventListener('hashchange', ruta);
+  dibujarInicio();
+  ruta();
+})();
+</script>
+</body>
+</html>
