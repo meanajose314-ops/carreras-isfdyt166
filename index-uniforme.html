@@ -1,0 +1,2713 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carreras · ISFDyT N.º 166</title>
+<meta name="description" content="Carreras del ISFDyT N.º 166: planes de estudio y correlatividades.">
+<style>
+  :root {
+    --bg: #eef1f5;
+    --card: #ffffff;
+    --text: #0f1722;
+    --muted: #3f4a5a;
+    --line: #b9c2cf;
+    --accent: #1a5896;
+    --c1: #1f63c9;
+    --c2: #7a3fc4;
+    --c3: #0b7d5e;
+    --c4: #c46a00;
+    --c5: #b5246f;
+    --c6: #5a6b80;
+    --sel: #0f1722;
+    --sel-text: #ffffff;
+    --req-bg: #ffd84d;
+    --req-line: #8a6500;
+    --hab-bg: #7fdc9b;
+    --hab-line: #0d6b30;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1218;
+      --card: #171d26;
+      --text: #f2f5f9;
+      --muted: #c0c9d6;
+      --line: #46526a;
+      --accent: #8ec0f5;
+      --c1: #6aa6ff;
+      --c2: #b999f5;
+      --c3: #3fd6a8;
+      --c4: #ffb04d;
+      --c5: #ff7ab8;
+      --c6: #a9b8cc;
+      --sel: #f2f5f9;
+      --sel-text: #0e1218;
+      --req-bg: #7a5d00;
+      --req-line: #ffd84d;
+      --hab-bg: #14683a;
+      --hab-line: #6fe39a;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { font-size: 17px; -webkit-text-size-adjust: 100%; }
+  @media (max-width: 640px) { html { font-size: 18px; } }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.35;
+  }
+  header { padding: 24px 12px 6px; text-align: center; }
+  header h1 { margin: 0; font-size: 1.7rem; }
+  header p { margin: 6px 0 0; color: var(--muted); font-size: 1.05rem; }
+  main { max-width: 1100px; margin: 0 auto; padding: 12px; }
+
+  /* Inicio: botones de carreras */
+  .carreras { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 12px; }
+  .carrera-btn {
+    background: var(--card); color: var(--text); border: 2px solid var(--line);
+    border-radius: 12px; padding: 20px 24px; font: inherit; font-size: 1.1rem; font-weight: 700;
+    cursor: pointer; min-width: 240px; max-width: 360px; text-align: center;
+  }
+  .grupo { flex: 0 0 100%; margin: 14px 0 0; text-align: center; font-size: 1.15rem; color: var(--muted); font-weight: 700; }
+  .grupo:first-child { margin-top: 0; }
+  .carrera-btn small { display: block; font-weight: 500; font-size: .9rem; color: var(--muted); margin-top: 6px; }
+  .carrera-btn:hover, .carrera-btn:focus-visible { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent); }
+
+  /* Plan */
+  .volver {
+    background: none; border: none; color: var(--accent); font: inherit; font-weight: 600;
+    cursor: pointer; padding: 8px 0; margin-bottom: 4px;
+  }
+  h2 { margin: 0 0 4px; font-size: 1.5rem; line-height: 1.2; }
+  .sub { color: var(--muted); margin: 0 0 14px; }
+  .leyenda { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0 0 10px; font-size: .92rem; color: var(--text); }
+  .leyenda span { display: inline-flex; align-items: center; gap: 7px; }
+  .dot { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+  .nota { margin: 0 0 14px; font-size: .88rem; color: var(--muted); }
+  .ayuda { background: var(--card); border: 2px solid var(--line); border-radius: 10px; padding: 12px 14px; margin-bottom: 16px; font-size: 1rem; min-height: 52px; }
+  .ayuda b { font-weight: 700; }
+  .ayuda .tip { margin-top: 8px; font-size: .88rem; color: var(--muted); }
+  .ayuda.invita { background: color-mix(in srgb, var(--accent) 14%, var(--card)); border-color: var(--accent); font-weight: 600; }
+  .ayuda.invita .tip { font-weight: 400; }
+
+  .anio { background: var(--card); border: 2px solid var(--line); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+  .anio h3 { margin: 0; padding: 10px 14px; background: color-mix(in srgb, var(--accent) 22%, var(--card)); font-size: 1.15rem; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+  .anio h3 span { font-weight: 500; color: var(--muted); font-size: .95rem; }
+  .anio-nota { margin: 0; padding: 8px 14px 0; font-size: .88rem; color: var(--muted); }
+
+  /* Ancho proporcional a la carga horaria (32 hs = 1 unidad). Con flex las filas
+     se llenan solas y no quedan huecos. Mínimo de ancho para que el texto se lea. */
+  .materias { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; padding: 10px; }
+  .materia {
+    min-width: 0; min-height: 110px;
+    text-align: center; font: inherit; color: var(--text);
+    background: color-mix(in srgb, var(--c) 13%, var(--card));
+    border: 2px solid color-mix(in srgb, var(--c) 55%, var(--card));
+    border-left: 8px solid var(--c);
+    border-radius: 8px; padding: 10px 12px; cursor: pointer; min-height: 84px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px;
+    hyphens: auto; overflow-wrap: anywhere;
+    transition: opacity .15s, background .15s;
+  }
+  .materia.estatica { cursor: default; }
+  .materia .nom { font-weight: 700; font-size: 1.05rem; line-height: 1.2; }
+  .materia .det { font-size: .85rem; line-height: 1.25; color: var(--text); margin-top: 3px; }
+  .materia .hs { font-size: .9rem; color: var(--muted); font-weight: 500; }
+  .materia:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* Orientaciones (carreras con tronco común) */
+  .orient { margin-top: 26px; }
+  .orient h3.orient-t { margin: 0 0 4px; font-size: 1.3rem; }
+  .orient-btns { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 18px; }
+  .orient-btn {
+    flex: 1 1 200px; background: var(--card); color: var(--text); border: 2px solid var(--line);
+    border-radius: 12px; padding: 16px 20px; font: inherit; font-size: 1.1rem; font-weight: 700;
+    cursor: pointer; text-align: center;
+  }
+  .orient-btn:hover, .orient-btn:focus-visible { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent); }
+  .orient-btn[aria-pressed="true"] { background: var(--sel); color: var(--sel-text); border-color: var(--sel); }
+  h3.orient-t2 { margin: 0 0 12px; font-size: 1.3rem; }
+  .proximo { background: var(--card); border: 2px dashed var(--line); border-radius: 12px; padding: 18px 16px; margin: 0 0 16px; color: var(--muted); }
+
+  /* Celular: 2 columnas; hasta 64 hs = media fila, más de 64 hs = fila completa */
+  @media (max-width: 640px) {
+    main { padding: 10px; }
+    .materias { gap: 6px; padding: 8px 6px; }
+    .materia { min-height: 80px; padding: 9px 8px 9px 9px; border-left-width: 6px; min-width: 0; }
+    .materia.con-det { min-width: 0; }
+    .materia .nom { font-size: 1rem; }
+    .materias { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .con-seleccion .materia { opacity: .42; }
+  .con-seleccion .materia.sel, .con-seleccion .materia.req, .con-seleccion .materia.hab { opacity: 1; }
+  .materia.sel { background: var(--sel); color: var(--sel-text); border-color: var(--sel); border-left-color: var(--c); }
+  .materia.sel .hs, .materia.sel .det { color: var(--sel-text); opacity: .85; }
+  .materia.req { background: var(--req-bg); border-color: var(--req-line); border-left-color: var(--req-line); }
+  .materia.hab { background: var(--hab-bg); border-color: var(--hab-line); border-left-color: var(--hab-line); }
+  .materia.req .hs, .materia.hab .hs { color: var(--text); }
+
+  footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 20px 12px 36px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ISFDyT N.º 166</h1>
+  <p id="subtitulo">Nuestras carreras</p>
+</header>
+
+<main>
+  <section id="inicio">
+    <p class="nota" style="text-align:center;font-size:1rem">Elegí una carrera para ver su plan de estudio. Dentro de cada plan podés tocar una materia para ver sus correlatividades.</p>
+    <div class="carreras" id="listaCarreras"></div>
+  </section>
+
+  <section id="plan" hidden>
+    <button class="volver" id="volver" type="button">← Volver a las carreras</button>
+    <h2 id="tituloCarrera"></h2>
+    <p class="sub" id="subCarrera"></p>
+    <p class="nota" id="notaCarrera" hidden></p>
+
+    <div class="leyenda" id="leyenda"></div>
+    
+    <p class="nota" id="notaCorr" hidden></p>
+    <div class="ayuda" id="ayuda" aria-live="polite"></div>
+
+    <div id="anios"></div>
+
+    <section class="orient" id="orient" hidden>
+      <h3 class="orient-t">Orientaciones</h3>
+      <p class="nota">A partir de 3.º año el plan depende de la orientación. Elegí una para ver 3.º y 4.º año.</p>
+      <div class="orient-btns" id="orientBtns"></div>
+      <div id="orientPlan"></div>
+    </section>
+  </section>
+</main>
+
+<footer>Información orientativa. Consultá el plan oficial en el instituto.</footer>
+
+<!-- ============================================================
+     DATOS. Para agregar otra carrera, copiá un bloque dentro de "carreras".
+     Cada carrera tiene:
+       id, nombre, tipo ("Tecnicaturas" o "Profesorados": agrupa los botones del inicio), duracion, detalle (opcional)
+       El orden de las carreras en esta lista es el orden en que se muestran.
+       correlatividades  false si todavía no se cargaron (las materias no se pueden tocar)
+       frasePrevias      (opcional) cómo se redacta la lista de correlativas en el cuadro de ayuda
+       notaCarrera, notaCorrelatividades   (opcionales) avisos que se muestran arriba del plan
+       campos            lista de { clave, etiqueta, color } (color: c1 a c5)
+       anios             los años (comunes a todos)
+       orientaciones     (opcional) lista de { id, nombre, anios }: se muestran como botones
+                         debajo de los años comunes y, al elegir una, se despliegan sus años
+     Cada año tiene: titulo, nota (opcional), horasAdicionales (opcional), materias
+     Cada materia tiene:
+       id          identificador único (sin espacios)
+       nombre      como se muestra
+       detalle     texto chico debajo del nombre (opcional)
+       hs          horas
+       campo       una de las claves de "campos"
+       fueraDelTotal  true si las horas no se suman al total del año (opcional)
+       correlativas  lista de ids que deben estar aprobadas
+     ============================================================ -->
+<script type="application/json" id="datos">
+{
+  "carreras": [
+    {
+      "id": "analisis-de-sistemas",
+      "tipo": "Tecnicaturas",
+      "nombre": "Tecnicatura Superior en Análisis de Sistemas",
+      "duracion": "3 años",
+      "campos": [
+        {
+          "clave": "General",
+          "etiqueta": "Campo General",
+          "color": "c1"
+        },
+        {
+          "clave": "Fundamento",
+          "etiqueta": "Campo del Fundamento",
+          "color": "c2"
+        },
+        {
+          "clave": "Técnico Específico",
+          "etiqueta": "Campo Técnico Específico",
+          "color": "c3"
+        },
+        {
+          "clave": "Práctica",
+          "etiqueta": "Campo de la Práctica",
+          "color": "c4"
+        }
+      ],
+      "anios": [
+        {
+          "titulo": "1.º año",
+          "materias": [
+            {
+              "id": "ingles1",
+              "nombre": "Inglés I",
+              "hs": 64,
+              "campo": "General",
+              "correlativas": []
+            },
+            {
+              "id": "cts",
+              "nombre": "Ciencia, Tecnología y Sociedad",
+              "hs": 64,
+              "campo": "General",
+              "correlativas": []
+            },
+            {
+              "id": "am1",
+              "nombre": "Análisis Matemático I",
+              "hs": 64,
+              "campo": "Fundamento",
+              "correlativas": []
+            },
+            {
+              "id": "algebra",
+              "nombre": "Álgebra",
+              "hs": 64,
+              "campo": "Fundamento",
+              "correlativas": []
+            },
+            {
+              "id": "aed1",
+              "nombre": "Algoritmos y estructuras de datos I",
+              "hs": 128,
+              "campo": "Técnico Específico",
+              "correlativas": []
+            },
+            {
+              "id": "syo",
+              "nombre": "Sistemas y Organizaciones",
+              "hs": 64,
+              "campo": "Técnico Específico",
+              "correlativas": []
+            },
+            {
+              "id": "arq",
+              "nombre": "Arquitectura de Computadores",
+              "hs": 64,
+              "campo": "Técnico Específico",
+              "correlativas": []
+            },
+            {
+              "id": "pp1",
+              "nombre": "Prácticas Profesionalizantes I",
+              "hs": 64,
+              "campo": "Práctica",
+              "correlativas": []
+            }
+          ]
+        },
+        {
+          "titulo": "2.º año",
+          "materias": [
+            {
+              "id": "ingles2",
+              "nombre": "Inglés II",
+              "hs": 64,
+              "campo": "General",
+              "correlativas": [
+                "ingles1"
+              ]
+            },
+            {
+              "id": "am2",
+              "nombre": "Análisis Matemático II",
+              "hs": 64,
+              "campo": "Fundamento",
+              "correlativas": [
+                "am1",
+                "algebra"
+              ]
+            },
+            {
+              "id": "estadistica",
+              "nombre": "Estadística",
+              "hs": 64,
+              "campo": "Fundamento",
+              "correlativas": [
+                "am1",
+                "algebra"
+              ]
+            },
+            {
+              "id": "is1",
+              "nombre": "Ingeniería de Software I",
+              "hs": 64,
+              "campo": "Técnico Específico",
+              "correlativas": [
+                "syo"
+              ]
+            },
+            {
+              "id": "aed2",
+              "nombre": "Algoritmos y estructuras de datos II",
+              "hs": 128,
+              "campo": "Técnico Específico",
+              "correlativas": [
+                "aed1"
+              ]
+            },
+            {
+              "id": "so",
+              "nombre": "Sistemas Operativos",
+              "hs": 64,
+              "campo": "Técnico Específico",
+              "correlativas": [
+                "arq"
+              ]
+            },
+            {
+              "id": "bd",
+              "nombre": "Base de Datos",
+              "hs": 64,
+              "campo": "Técnico Específico",
+              "correlativas": [
+                "aed1"
+              ]
+            },
+            {
+              "id": "pp2",
+              "nombre": "Prácticas Profesionalizantes II",
+              "hs": 128,
+              "campo": "Práctica",
+              "correlativas": [
+                "pp1",
+                "syo"
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "3.º año",
+          "materias": [
+            {
+              "id": "ingles3",
+              "nombre": "Inglés III",
+              "hs": 64,
+              "campo": "General",
+              "correlativas": [
+                "ingles2"
+              ]
+            },
+            {
+              "id": "legales",
+              "nombre": "Aspectos legales de la Profesión",
+              "hs": 64,
+              "campo": "Fundamento",
+              "correlativas": []
+            },
+            {
+              "id": "seminario",
+              "nombre": "Seminario de actualización",
+              "hs": 64,
+              "campo": "Técnico Específico",
+              "correlativas": []
+            },
+            {
+              "id": "redes",
+              "nombre": "Redes y Comunicaciones",
+              "hs": 64,
+              "campo": "Técnico Específico",
+              "correlativas": [
+                "so"
+              ]
+            },
+            {
+              "id": "is2",
+              "nombre": "Ingeniería de Software II",
+              "hs": 64,
+              "campo": "Técnico Específico",
+              "correlativas": [
+                "is1"
+              ]
+            },
+            {
+              "id": "aed3",
+              "nombre": "Algoritmos y estructuras de datos III",
+              "hs": 128,
+              "campo": "Técnico Específico",
+              "correlativas": [
+                "aed2",
+                "am1"
+              ]
+            },
+            {
+              "id": "pp3",
+              "nombre": "Prácticas Profesionalizantes III",
+              "hs": 192,
+              "campo": "Práctica",
+              "correlativas": [
+                "pp2",
+                "aed2",
+                "bd",
+                "is1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bibliotecologia-instituciones-educativas",
+      "tipo": "Tecnicaturas",
+      "nombre": "Tecnicatura Superior en Bibliotecología de Instituciones Educativas",
+      "duracion": "2 años",
+      "detalle": "1728 horas · Título: Bibliotecaria/o de Instituciones Educativas",
+      "notaCarrera": "Quienes no cuentan con título docente habilitante deben cursar además, en los Profesorados de Educación Inicial, Primaria o Secundaria, unidades curriculares de formación pedagógica (el diseño curricular detalla cuáles). Quienes ya tienen título docente tienen reconocidos esos espacios.",
+      "notaCorrelatividades": "Las correlatividades rigen desde 2.º año. Para cursar un espacio hay que tener aprobada la cursada de sus correlativas; para rendir el final, tener aprobados los finales de sus correlativas.",
+      "frasePrevias": "tiene como correlativas a ",
+      "campos": [
+        {
+          "clave": "general",
+          "etiqueta": "Campo de Formación General",
+          "color": "c1"
+        },
+        {
+          "clave": "fundamento",
+          "etiqueta": "Campo de Formación de Fundamento",
+          "color": "c2"
+        },
+        {
+          "clave": "especifica",
+          "etiqueta": "Campo de Formación Específica",
+          "color": "c3"
+        },
+        {
+          "clave": "practica",
+          "etiqueta": "Campo de las Prácticas Profesionalizantes",
+          "color": "c4"
+        }
+      ],
+      "anios": [
+        {
+          "titulo": "1.º año",
+          "nota": "Trayecto común con la Tecnicatura Superior en Bibliotecología.",
+          "materias": [
+            {
+              "id": "hps",
+              "nombre": "Historia de los Procesos Socioculturales",
+              "hs": 64,
+              "campo": "general",
+              "correlativas": []
+            },
+            {
+              "id": "luni",
+              "nombre": "Literatura Universal",
+              "hs": 64,
+              "campo": "fundamento",
+              "correlativas": []
+            },
+            {
+              "id": "ingl",
+              "nombre": "Inglés",
+              "hs": 64,
+              "campo": "fundamento",
+              "correlativas": []
+            },
+            {
+              "id": "hbs",
+              "nombre": "Historia de las Bibliotecas y Soportes de la Información",
+              "hs": 64,
+              "campo": "especifica",
+              "correlativas": []
+            },
+            {
+              "id": "fbci",
+              "nombre": "Fundamentos de Bibliotecología y Ciencias de la Información",
+              "hs": 64,
+              "campo": "especifica",
+              "correlativas": []
+            },
+            {
+              "id": "ag1",
+              "nombre": "Administración y Gestión de Bibliotecas 1",
+              "hs": 96,
+              "campo": "especifica",
+              "correlativas": []
+            },
+            {
+              "id": "tab1",
+              "nombre": "Tecnologías Aplicadas a las Bibliotecas 1",
+              "hs": 64,
+              "campo": "especifica",
+              "correlativas": []
+            },
+            {
+              "id": "fsi",
+              "nombre": "Fuentes y Servicios de Información",
+              "hs": 96,
+              "campo": "especifica",
+              "correlativas": []
+            },
+            {
+              "id": "dd",
+              "nombre": "Descripción Documental",
+              "hs": 96,
+              "campo": "practica",
+              "correlativas": []
+            },
+            {
+              "id": "ad",
+              "nombre": "Análisis Documental",
+              "hs": 96,
+              "campo": "practica",
+              "correlativas": []
+            },
+            {
+              "id": "bpp1",
+              "nombre": "Práctica Profesionalizante 1",
+              "hs": 128,
+              "campo": "practica",
+              "correlativas": []
+            }
+          ]
+        },
+        {
+          "titulo": "2.º año",
+          "materias": [
+            {
+              "id": "rspcc",
+              "nombre": "Realidad Socio Político Cultural Contemporánea",
+              "hs": 64,
+              "campo": "general",
+              "correlativas": [
+                "hps"
+              ]
+            },
+            {
+              "id": "cyc",
+              "nombre": "Comunicación y Cibercultura",
+              "hs": 64,
+              "campo": "general",
+              "correlativas": []
+            },
+            {
+              "id": "liij",
+              "nombre": "Literatura para las Infancias y Juventudes",
+              "hs": 64,
+              "campo": "fundamento",
+              "correlativas": [
+                "luni"
+              ]
+            },
+            {
+              "id": "bed",
+              "nombre": "Biblioteca, Escuela y Diversidades",
+              "hs": 64,
+              "campo": "fundamento",
+              "correlativas": []
+            },
+            {
+              "id": "fube",
+              "nombre": "Formación de Usuarias/os en Bibliotecas Educativas",
+              "hs": 64,
+              "campo": "fundamento",
+              "correlativas": []
+            },
+            {
+              "id": "dgc",
+              "nombre": "Desarrollo y Gestión de Colecciones",
+              "hs": 64,
+              "campo": "fundamento",
+              "correlativas": [
+                "fsi"
+              ]
+            },
+            {
+              "id": "ag2",
+              "nombre": "Administración y Gestión de Bibliotecas 2",
+              "hs": 64,
+              "campo": "especifica",
+              "correlativas": [
+                "ag1"
+              ]
+            },
+            {
+              "id": "tab2",
+              "nombre": "Tecnologías Aplicadas a las Bibliotecas 2",
+              "hs": 64,
+              "campo": "especifica",
+              "correlativas": [
+                "tab1"
+              ]
+            },
+            {
+              "id": "ade",
+              "nombre": "Análisis Documental Especializado en Educación",
+              "hs": 96,
+              "campo": "practica",
+              "correlativas": [
+                "dd",
+                "ad"
+              ]
+            },
+            {
+              "id": "dde",
+              "nombre": "Descripción Documental Especializada en Educación",
+              "hs": 96,
+              "campo": "practica",
+              "correlativas": [
+                "dd"
+              ]
+            },
+            {
+              "id": "bpp2",
+              "nombre": "Práctica Profesionalizante 2",
+              "hs": 128,
+              "campo": "practica",
+              "correlativas": [
+                "bpp1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "profesorado-educacion-especial",
+      "tipo": "Profesorados",
+      "nombre": "Profesorado de Educación Especial",
+      "duracion": "4 años",
+      "detalle": "2 años de formación común y 2 años de orientación",
+      "frasePrevias": "tiene como correlativas a ",
+      "campos": [
+        {
+          "clave": "actualizacion",
+          "etiqueta": "Campo de Actualización Formativa",
+          "color": "c5"
+        },
+        {
+          "clave": "subjetividad",
+          "etiqueta": "Campo de la Subjetividad y las Culturas",
+          "color": "c1"
+        },
+        {
+          "clave": "practica",
+          "etiqueta": "Campo de la Práctica Docente",
+          "color": "c4"
+        },
+        {
+          "clave": "saberes",
+          "etiqueta": "Campo de los Saberes Específicos",
+          "color": "c3"
+        },
+        {
+          "clave": "fundamentacion",
+          "etiqueta": "Campo de la Fundamentación",
+          "color": "c2"
+        },
+        {
+          "clave": "trayectos",
+          "etiqueta": "Trayectos Formativos Opcionales",
+          "color": "c6"
+        }
+      ],
+      "anios": [
+        {
+          "titulo": "1.º año",
+          "nota": "Común a todas las orientaciones. Incluye 64 hs de Práctica a cargo del profesor de Educación Especial (el resto de la Práctica, 128 hs, está a cargo del profesor generalista).",
+          "horasAdicionales": 64,
+          "materias": [
+            {
+              "id": "tlyo",
+              "nombre": "Taller de lectura, escritura y oralidad",
+              "hs": 64,
+              "campo": "actualizacion",
+              "correlativas": []
+            },
+            {
+              "id": "tplm",
+              "nombre": "Taller de pensamiento lógico matemático",
+              "hs": 64,
+              "campo": "actualizacion",
+              "correlativas": []
+            },
+            {
+              "id": "psi1",
+              "nombre": "Psicología del desarrollo y el aprendizaje I",
+              "hs": 64,
+              "campo": "subjetividad",
+              "correlativas": []
+            },
+            {
+              "id": "corp",
+              "nombre": "Corporeidad y motricidad",
+              "hs": 32,
+              "campo": "subjetividad",
+              "correlativas": []
+            },
+            {
+              "id": "pt1",
+              "nombre": "Práctica en terreno",
+              "detalle": "Experiencia social en espacios y organizaciones de la comunidad",
+              "hs": 64,
+              "campo": "practica",
+              "correlativas": []
+            },
+            {
+              "id": "ti1",
+              "nombre": "Taller Integrador Interdisciplinario",
+              "detalle": "Comunidad Educadora (Diversidad de programas de Integración Comunitaria)",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": []
+            },
+            {
+              "id": "herr1",
+              "nombre": "Herramientas",
+              "detalle": "Construcción de herramientas para el abordaje educativo en espacios de integración comunitaria",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": []
+            },
+            {
+              "id": "iee",
+              "nombre": "Introducción a la Educación Especial",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "dpl1",
+              "nombre": "Didáctica de las Prácticas del Lenguaje I",
+              "hs": 32,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "dmat1",
+              "nombre": "Didáctica de la Matemática I",
+              "hs": 32,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "dcs1",
+              "nombre": "Didáctica de las Ciencias Sociales I",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "dcn1",
+              "nombre": "Didáctica de las Ciencias Naturales I",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "filo",
+              "nombre": "Filosofía",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": []
+            },
+            {
+              "id": "dgral",
+              "nombre": "Didáctica general",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": []
+            },
+            {
+              "id": "ped",
+              "nombre": "Pedagogía",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": []
+            },
+            {
+              "id": "amc",
+              "nombre": "Análisis del mundo contemporáneo",
+              "hs": 32,
+              "campo": "fundamentacion",
+              "correlativas": []
+            }
+          ]
+        },
+        {
+          "titulo": "2.º año",
+          "nota": "Común a las orientaciones Intelectual y Neuromotor. Incluye 64 hs de Práctica a cargo del profesor de Educación Especial.",
+          "horasAdicionales": 64,
+          "materias": [
+            {
+              "id": "psi2",
+              "nombre": "Psicología del desarrollo y el aprendizaje II",
+              "hs": 64,
+              "campo": "subjetividad",
+              "correlativas": [
+                "psi1"
+              ]
+            },
+            {
+              "id": "cce",
+              "nombre": "Cultura, comunicación y educación",
+              "hs": 32,
+              "campo": "subjetividad",
+              "correlativas": []
+            },
+            {
+              "id": "pt2",
+              "nombre": "Práctica en terreno",
+              "detalle": "En instituciones educativas. Observación en Educación Especial e Integración en todos los niveles y modalidades",
+              "hs": 64,
+              "campo": "practica",
+              "correlativas": [
+                "pt1",
+                "ti1",
+                "herr1"
+              ]
+            },
+            {
+              "id": "ti2",
+              "nombre": "Taller Integrador Interdisciplinario",
+              "detalle": "Espacio escolar y realidad educativa",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": [
+                "pt1",
+                "ti1",
+                "herr1"
+              ]
+            },
+            {
+              "id": "herr2",
+              "nombre": "Herramientas",
+              "detalle": "Aproximación y análisis cualitativo institucional",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": [
+                "pt1",
+                "ti1",
+                "herr1"
+              ]
+            },
+            {
+              "id": "neuro",
+              "nombre": "Neurociencias",
+              "hs": 96,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "dpl2",
+              "nombre": "Didáctica de las Prácticas del Lenguaje II",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "dpl1"
+              ]
+            },
+            {
+              "id": "dcs2",
+              "nombre": "Didáctica de las Ciencias Sociales II",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "dcs1"
+              ]
+            },
+            {
+              "id": "dcn2",
+              "nombre": "Didáctica de las Ciencias Naturales II",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "dcn1"
+              ]
+            },
+            {
+              "id": "dmat2",
+              "nombre": "Didáctica de la Matemática II",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "dmat1"
+              ]
+            },
+            {
+              "id": "arte",
+              "nombre": "Arte y Educación",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "tsp",
+              "nombre": "Teorías sociopolíticas y educación",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": []
+            },
+            {
+              "id": "dcur",
+              "nombre": "Didáctica y currículum",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": [
+                "dgral"
+              ]
+            }
+          ]
+        }
+      ],
+      "orientaciones": [
+        {
+          "id": "intelectual",
+          "nombre": "Intelectual",
+          "anios": [
+            {
+              "titulo": "3.º año",
+              "materias": [
+                {
+                  "id": "i_psi3",
+                  "nombre": "Psicología del Desarrollo y el Aprendizaje III",
+                  "hs": 64,
+                  "campo": "subjetividad",
+                  "correlativas": [
+                    "psi2"
+                  ]
+                },
+                {
+                  "id": "i_abor",
+                  "nombre": "Abordaje psicopedagógico de los sujetos con discapacidad",
+                  "hs": 64,
+                  "campo": "subjetividad",
+                  "correlativas": []
+                },
+                {
+                  "id": "i_pt3",
+                  "nombre": "Práctica en terreno",
+                  "detalle": "En el aula de educación especial y/o proyectos de integración, grupos de inicial y primaria",
+                  "hs": 128,
+                  "campo": "practica",
+                  "correlativas": [
+                    "pt2",
+                    "ti2",
+                    "herr2",
+                    "dpl2",
+                    "dmat2",
+                    "dcs2",
+                    "dcn2"
+                  ]
+                },
+                {
+                  "id": "i_ti3",
+                  "nombre": "Taller Integrador Interdisciplinario",
+                  "detalle": "Relación educativa en los equipos transdisciplinarios",
+                  "hs": 32,
+                  "campo": "practica",
+                  "correlativas": [
+                    "pt2",
+                    "ti2",
+                    "herr2",
+                    "dpl2",
+                    "dmat2",
+                    "dcs2",
+                    "dcn2"
+                  ]
+                },
+                {
+                  "id": "i_he3",
+                  "nombre": "Herramientas",
+                  "detalle": "Investigación en y para la acción educativa",
+                  "hs": 32,
+                  "campo": "practica",
+                  "correlativas": [
+                    "pt2",
+                    "ti2",
+                    "herr2",
+                    "dpl2",
+                    "dmat2",
+                    "dcs2",
+                    "dcn2"
+                  ]
+                },
+                {
+                  "id": "i_lyc",
+                  "nombre": "Lenguaje y Comunicación en el sujeto con discapacidad intelectual",
+                  "hs": 64,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "i_sdi",
+                  "nombre": "Sujeto con discapacidad intelectual",
+                  "hs": 96,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "i_cdi1",
+                  "nombre": "Currículo y Discapacidad Intelectual I",
+                  "hs": 96,
+                  "campo": "saberes",
+                  "correlativas": [
+                    "dcur"
+                  ]
+                },
+                {
+                  "id": "i_atde",
+                  "nombre": "Atención temprana del Desarrollo Infantil",
+                  "hs": 32,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "i_pmod",
+                  "nombre": "Producción de materiales y objetos didácticos",
+                  "hs": 32,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "i_hist",
+                  "nombre": "Historia, Política y Legislación Educativa Argentina",
+                  "hs": 64,
+                  "campo": "fundamentacion",
+                  "correlativas": []
+                }
+              ]
+            },
+            {
+              "titulo": "4.º año",
+              "nota": "Las 160 hs de Espacios de definición institucional (Trayectos Formativos Opcionales) no se suman al total de 768 hs.",
+              "materias": [
+                {
+                  "id": "i_inter",
+                  "nombre": "Interacciones sociales",
+                  "hs": 32,
+                  "campo": "subjetividad",
+                  "correlativas": []
+                },
+                {
+                  "id": "i_psipat",
+                  "nombre": "Psicopatología",
+                  "hs": 64,
+                  "campo": "subjetividad",
+                  "correlativas": [
+                    "i_psi3"
+                  ]
+                },
+                {
+                  "id": "i_pt4",
+                  "nombre": "Práctica en terreno",
+                  "detalle": "En el aula, en el nivel de formación",
+                  "hs": 192,
+                  "campo": "practica",
+                  "correlativas": [
+                    "i_pt3",
+                    "i_ti3",
+                    "i_he3",
+                    "dcur"
+                  ]
+                },
+                {
+                  "id": "i_ti4",
+                  "nombre": "Taller Integrador Interdisciplinario",
+                  "detalle": "Posicionamiento docente",
+                  "hs": 32,
+                  "campo": "practica",
+                  "correlativas": [
+                    "i_pt3",
+                    "i_ti3",
+                    "i_he3",
+                    "dcur"
+                  ]
+                },
+                {
+                  "id": "i_cdi2",
+                  "nombre": "Currículo y Discapacidad Intelectual II",
+                  "hs": 128,
+                  "campo": "saberes",
+                  "correlativas": [
+                    "i_cdi1"
+                  ]
+                },
+                {
+                  "id": "i_taf",
+                  "nombre": "Taller de abordaje familiar en la escuela",
+                  "hs": 32,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "i_fl",
+                  "nombre": "Formación Laboral",
+                  "hs": 96,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "i_mult",
+                  "nombre": "Multidiscapacidad",
+                  "hs": 32,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "i_ent",
+                  "nombre": "Educación y nuevas tecnologías",
+                  "hs": 64,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "i_pld",
+                  "nombre": "Política y Legislación referida a la discapacidad",
+                  "hs": 32,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "i_refl",
+                  "nombre": "Reflexión Filosófica de la Educación",
+                  "hs": 32,
+                  "campo": "fundamentacion",
+                  "correlativas": [
+                    "filo"
+                  ]
+                },
+                {
+                  "id": "i_etico",
+                  "nombre": "Dimensión ético-política de la praxis docente",
+                  "hs": 32,
+                  "campo": "fundamentacion",
+                  "correlativas": []
+                },
+                {
+                  "id": "i_edi",
+                  "nombre": "Espacios de definición institucional",
+                  "hs": 160,
+                  "campo": "trayectos",
+                  "fueraDelTotal": true,
+                  "correlativas": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "neuromotor",
+          "nombre": "Neuromotor",
+          "anios": [
+            {
+              "titulo": "3.º año",
+              "materias": [
+                {
+                  "id": "n_psi3",
+                  "nombre": "Psicología del Desarrollo y el Aprendizaje III",
+                  "hs": 64,
+                  "campo": "subjetividad",
+                  "correlativas": [
+                    "psi2"
+                  ]
+                },
+                {
+                  "id": "n_abor",
+                  "nombre": "Abordaje psicopedagógico de los sujetos con discapacidad",
+                  "hs": 64,
+                  "campo": "subjetividad",
+                  "correlativas": []
+                },
+                {
+                  "id": "n_pt3",
+                  "nombre": "Práctica en terreno",
+                  "detalle": "En el aula de educación especial y/o proyectos de integración, grupos de inicial y primaria",
+                  "hs": 128,
+                  "campo": "practica",
+                  "correlativas": [
+                    "pt2",
+                    "ti2",
+                    "herr2",
+                    "dpl2",
+                    "dmat2",
+                    "dcs2",
+                    "dcn2"
+                  ]
+                },
+                {
+                  "id": "n_ti3",
+                  "nombre": "Taller Integrador Interdisciplinario",
+                  "detalle": "Relación educativa en los equipos transdisciplinarios",
+                  "hs": 32,
+                  "campo": "practica",
+                  "correlativas": [
+                    "pt2",
+                    "ti2",
+                    "herr2",
+                    "dpl2",
+                    "dmat2",
+                    "dcs2",
+                    "dcn2"
+                  ]
+                },
+                {
+                  "id": "n_he3",
+                  "nombre": "Herramientas",
+                  "detalle": "Investigación en y para la acción educativa",
+                  "hs": 32,
+                  "campo": "practica",
+                  "correlativas": [
+                    "pt2",
+                    "ti2",
+                    "herr2",
+                    "dpl2",
+                    "dmat2",
+                    "dcs2",
+                    "dcn2"
+                  ]
+                },
+                {
+                  "id": "n_anat",
+                  "nombre": "Anatomofisiología y patología del aparato locomotor",
+                  "hs": 64,
+                  "campo": "saberes",
+                  "correlativas": [
+                    "neuro"
+                  ]
+                },
+                {
+                  "id": "n_neuro",
+                  "nombre": "Neurolingüística",
+                  "hs": 64,
+                  "campo": "saberes",
+                  "correlativas": [
+                    "neuro"
+                  ]
+                },
+                {
+                  "id": "n_cdn1",
+                  "nombre": "Currículo y Discapacidad Neuromotora I",
+                  "hs": 96,
+                  "campo": "saberes",
+                  "correlativas": [
+                    "dcur"
+                  ]
+                },
+                {
+                  "id": "n_atde",
+                  "nombre": "Atención temprana del Desarrollo Infantil",
+                  "hs": 32,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "n_reha",
+                  "nombre": "Rehabilitación y habilitación",
+                  "hs": 64,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "n_hist",
+                  "nombre": "Historia, Política y Legislación Educativa Argentina",
+                  "hs": 64,
+                  "campo": "fundamentacion",
+                  "correlativas": []
+                }
+              ]
+            },
+            {
+              "titulo": "4.º año",
+              "nota": "Las 160 hs de Espacios de definición institucional (Trayectos Formativos Opcionales) no se suman al total de 832 hs.",
+              "materias": [
+                {
+                  "id": "n_inter",
+                  "nombre": "Interacciones sociales",
+                  "hs": 32,
+                  "campo": "subjetividad",
+                  "correlativas": []
+                },
+                {
+                  "id": "n_psipat",
+                  "nombre": "Psicopatología",
+                  "hs": 64,
+                  "campo": "subjetividad",
+                  "correlativas": [
+                    "n_psi3"
+                  ]
+                },
+                {
+                  "id": "n_pt4",
+                  "nombre": "Práctica en terreno",
+                  "detalle": "En el aula, en el nivel de formación",
+                  "hs": 192,
+                  "campo": "practica",
+                  "correlativas": [
+                    "n_pt3",
+                    "n_ti3",
+                    "n_he3",
+                    "dcur"
+                  ]
+                },
+                {
+                  "id": "n_ti4",
+                  "nombre": "Taller Integrador Interdisciplinario",
+                  "detalle": "Posicionamiento docente",
+                  "hs": 32,
+                  "campo": "practica",
+                  "correlativas": [
+                    "n_pt3",
+                    "n_ti3",
+                    "n_he3",
+                    "dcur"
+                  ]
+                },
+                {
+                  "id": "n_fl",
+                  "nombre": "Formación Laboral",
+                  "hs": 64,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "n_cdn2",
+                  "nombre": "Currículo y Discapacidad Neuromotora II",
+                  "hs": 96,
+                  "campo": "saberes",
+                  "correlativas": [
+                    "n_cdn1"
+                  ]
+                },
+                {
+                  "id": "n_tlen",
+                  "nombre": "Trastornos del Lenguaje en neuromotores",
+                  "hs": 64,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "n_tes",
+                  "nombre": "Seminario de Trastornos Emocionales Severos (TES)",
+                  "hs": 32,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "n_tedl",
+                  "nombre": "Seminario de Trastornos Específicos del Desarrollo del Lenguaje (TEDL)",
+                  "hs": 32,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "n_mult",
+                  "nombre": "Multidiscapacidad",
+                  "hs": 64,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "n_ent",
+                  "nombre": "Educación y nuevas tecnologías",
+                  "hs": 64,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "n_pld",
+                  "nombre": "Política y Legislación referida a la discapacidad",
+                  "hs": 32,
+                  "campo": "saberes",
+                  "correlativas": []
+                },
+                {
+                  "id": "n_refl",
+                  "nombre": "Reflexión Filosófica de la Educación",
+                  "hs": 32,
+                  "campo": "fundamentacion",
+                  "correlativas": [
+                    "filo"
+                  ]
+                },
+                {
+                  "id": "n_etico",
+                  "nombre": "Dimensión ético-política de la praxis docente",
+                  "hs": 32,
+                  "campo": "fundamentacion",
+                  "correlativas": []
+                },
+                {
+                  "id": "n_edi",
+                  "nombre": "Espacios de definición institucional",
+                  "hs": 160,
+                  "campo": "trayectos",
+                  "fueraDelTotal": true,
+                  "correlativas": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "profesorado-educacion-inicial",
+      "tipo": "Profesorados",
+      "nombre": "Profesorado de Educación Inicial",
+      "duracion": "4 años",
+      "detalle": "Título: Profesor/a de Educación Inicial",
+      "notaCorrelatividades": "Para cursar 3.º año hay que tener aprobadas las materias de 1.º; para cursar 4.º, las de 1.º y 2.º. El Campo de Actualización Formativa se acredita por promoción, sin examen final.",
+      "frasePrevias": "tiene como correlativas a ",
+      "campos": [
+        {
+          "clave": "actualizacion",
+          "etiqueta": "Campo de Actualización Formativa",
+          "color": "c5"
+        },
+        {
+          "clave": "subjetividad",
+          "etiqueta": "Campo de la Subjetividad y las Culturas",
+          "color": "c1"
+        },
+        {
+          "clave": "practica",
+          "etiqueta": "Campo de la Práctica Docente",
+          "color": "c4"
+        },
+        {
+          "clave": "saberes",
+          "etiqueta": "Campo de los Saberes a Enseñar",
+          "color": "c3"
+        },
+        {
+          "clave": "fundamentacion",
+          "etiqueta": "Campo de la Fundamentación",
+          "color": "c2"
+        },
+        {
+          "clave": "trayectos",
+          "etiqueta": "Trayectos Formativos Opcionales",
+          "color": "c6"
+        }
+      ],
+      "anios": [
+        {
+          "titulo": "1.º año",
+          "materias": [
+            {
+              "id": "ini_tlyo",
+              "nombre": "Taller de lectura, escritura y oralidad",
+              "hs": 64,
+              "campo": "actualizacion",
+              "correlativas": []
+            },
+            {
+              "id": "ini_tplm",
+              "nombre": "Taller de pensamiento lógico matemático",
+              "hs": 64,
+              "campo": "actualizacion",
+              "correlativas": []
+            },
+            {
+              "id": "ini_tdi",
+              "nombre": "Taller de definición institucional",
+              "hs": 64,
+              "campo": "actualizacion",
+              "correlativas": []
+            },
+            {
+              "id": "ini_psi1",
+              "nombre": "Psicología del desarrollo y el aprendizaje I",
+              "hs": 64,
+              "campo": "subjetividad",
+              "correlativas": []
+            },
+            {
+              "id": "ini_etemp",
+              "nombre": "Educación temprana",
+              "hs": 64,
+              "campo": "subjetividad",
+              "correlativas": []
+            },
+            {
+              "id": "ini_corp",
+              "nombre": "Corporeidad y motricidad",
+              "hs": 32,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "ini_pt1",
+              "nombre": "Práctica en terreno",
+              "detalle": "Experiencia social en espacios y organizaciones de la comunidad",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": []
+            },
+            {
+              "id": "ini_ti1",
+              "nombre": "Taller Integrador Interdisciplinario",
+              "detalle": "Ciudad educadora",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": []
+            },
+            {
+              "id": "ini_herr1",
+              "nombre": "Herramientas",
+              "detalle": "Educación social y estrategias de educación popular",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": []
+            },
+            {
+              "id": "ini_filo",
+              "nombre": "Filosofía",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": []
+            },
+            {
+              "id": "ini_dgral",
+              "nombre": "Didáctica general",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": []
+            },
+            {
+              "id": "ini_ped",
+              "nombre": "Pedagogía",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": []
+            },
+            {
+              "id": "ini_amc",
+              "nombre": "Análisis del mundo contemporáneo",
+              "hs": 32,
+              "campo": "fundamentacion",
+              "correlativas": []
+            }
+          ]
+        },
+        {
+          "titulo": "2.º año",
+          "materias": [
+            {
+              "id": "ini_psi2",
+              "nombre": "Psicología del desarrollo y el aprendizaje II",
+              "hs": 64,
+              "campo": "subjetividad",
+              "correlativas": [
+                "ini_psi1"
+              ]
+            },
+            {
+              "id": "ini_psoc",
+              "nombre": "Psicología social e institucional",
+              "hs": 32,
+              "campo": "subjetividad",
+              "correlativas": []
+            },
+            {
+              "id": "ini_cce",
+              "nombre": "Cultura, comunicación y educación",
+              "hs": 32,
+              "campo": "subjetividad",
+              "correlativas": []
+            },
+            {
+              "id": "ini_pt2",
+              "nombre": "Práctica en terreno",
+              "detalle": "En instituciones educativas (distintos ámbitos: urbano, suburbano, rural)",
+              "hs": 64,
+              "campo": "practica",
+              "correlativas": [
+                "ini_pt1",
+                "ini_ti1",
+                "ini_herr1"
+              ]
+            },
+            {
+              "id": "ini_ti2",
+              "nombre": "Taller Integrador Interdisciplinario",
+              "detalle": "Espacio escolar y realidad educativa",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": [
+                "ini_pt1",
+                "ini_ti1",
+                "ini_herr1"
+              ]
+            },
+            {
+              "id": "ini_herr2",
+              "nombre": "Herramientas",
+              "detalle": "Aproximación y análisis cualitativo institucional",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": [
+                "ini_pt1",
+                "ini_ti1",
+                "ini_herr1"
+              ]
+            },
+            {
+              "id": "ini_plas",
+              "nombre": "Educación plástica",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "ini_dpl",
+              "nombre": "Didáctica de Prácticas del Lenguaje y la Literatura",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "ini_tlyo"
+              ]
+            },
+            {
+              "id": "ini_dcs",
+              "nombre": "Didáctica de las Ciencias Sociales",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "ini_dcn",
+              "nombre": "Didáctica de las Ciencias Naturales",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "ini_dmat",
+              "nombre": "Didáctica de la Matemática",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "ini_tsp",
+              "nombre": "Teorías sociopolíticas y educación",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": []
+            },
+            {
+              "id": "ini_dcur",
+              "nombre": "Didáctica y currículum de Nivel Inicial",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": [
+                "ini_dgral"
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "3.º año",
+          "materias": [
+            {
+              "id": "ini_juego",
+              "nombre": "Juego y desarrollo infantil",
+              "hs": 64,
+              "campo": "subjetividad",
+              "correlativas": []
+            },
+            {
+              "id": "ini_medios",
+              "nombre": "Medios audiovisuales, TIC’s y educación",
+              "hs": 32,
+              "campo": "subjetividad",
+              "correlativas": []
+            },
+            {
+              "id": "ini_pt3",
+              "nombre": "Práctica en terreno",
+              "detalle": "En el aula, en el nivel de formación",
+              "hs": 128,
+              "campo": "practica",
+              "correlativas": [
+                "ini_pt2",
+                "ini_ti2",
+                "ini_herr2",
+                "ini_dpl",
+                "ini_dcs",
+                "ini_dcn",
+                "ini_dmat",
+                "ini_dcur"
+              ]
+            },
+            {
+              "id": "ini_ti3",
+              "nombre": "Taller Integrador Interdisciplinario",
+              "detalle": "Relación educativa",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": [
+                "ini_pt2",
+                "ini_ti2",
+                "ini_herr2",
+                "ini_dpl",
+                "ini_dcs",
+                "ini_dcn",
+                "ini_dmat",
+                "ini_dcur"
+              ]
+            },
+            {
+              "id": "ini_herr3",
+              "nombre": "Herramientas",
+              "detalle": "Investigación en y para la acción educativa",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": [
+                "ini_pt2",
+                "ini_ti2",
+                "ini_herr2",
+                "ini_dpl",
+                "ini_dcs",
+                "ini_dcn",
+                "ini_dmat",
+                "ini_dcur"
+              ]
+            },
+            {
+              "id": "ini_mus",
+              "nombre": "Educación musical",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "ini_ef",
+              "nombre": "Educación Física escolar",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "ini_tlit",
+              "nombre": "Taller de Literatura infantil",
+              "hs": 32,
+              "campo": "saberes",
+              "correlativas": [
+                "ini_dpl"
+              ]
+            },
+            {
+              "id": "ini_tcs",
+              "nombre": "Taller de Ciencias Sociales",
+              "hs": 32,
+              "campo": "saberes",
+              "correlativas": [
+                "ini_dcs"
+              ]
+            },
+            {
+              "id": "ini_tcn",
+              "nombre": "Taller de Ciencias Naturales",
+              "hs": 32,
+              "campo": "saberes",
+              "correlativas": [
+                "ini_dcn"
+              ]
+            },
+            {
+              "id": "ini_tmat",
+              "nombre": "Taller de la Matemática",
+              "hs": 32,
+              "campo": "saberes",
+              "correlativas": [
+                "ini_dmat"
+              ]
+            },
+            {
+              "id": "ini_prod",
+              "nombre": "Producción de materiales y objetos lúdicos",
+              "hs": 32,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "ini_hist",
+              "nombre": "Historia y prospectiva de la educación",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": [
+                "ini_ped"
+              ]
+            },
+            {
+              "id": "ini_pol",
+              "nombre": "Políticas, legislación y administración del trabajo escolar",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": [
+                "ini_tsp"
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "4.º año",
+          "nota": "Las 160 hs de Espacios de definición institucional (Trayectos Formativos Opcionales) no se suman al total de 640 hs.",
+          "materias": [
+            {
+              "id": "ini_salud",
+              "nombre": "Educación en y para la salud",
+              "hs": 32,
+              "campo": "subjetividad",
+              "correlativas": []
+            },
+            {
+              "id": "ini_pt4",
+              "nombre": "Práctica en terreno",
+              "detalle": "En el aula, en el nivel de formación",
+              "hs": 256,
+              "campo": "practica",
+              "correlativas": [
+                "ini_pt3",
+                "ini_ti3",
+                "ini_herr3",
+                "ini_tcs",
+                "ini_tcn",
+                "ini_tlit",
+                "ini_tmat"
+              ]
+            },
+            {
+              "id": "ini_ti4",
+              "nombre": "Taller Integrador Interdisciplinario",
+              "detalle": "Posicionamiento docente",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": [
+                "ini_pt3",
+                "ini_ti3",
+                "ini_herr3",
+                "ini_tcs",
+                "ini_tcn",
+                "ini_tlit",
+                "ini_tmat"
+              ]
+            },
+            {
+              "id": "ini_ate_pl",
+              "nombre": "Ateneo de Prácticas del Lenguaje y la Literatura",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "ini_tlit"
+              ]
+            },
+            {
+              "id": "ini_ate_mat",
+              "nombre": "Ateneo de Matemática",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "ini_tmat"
+              ]
+            },
+            {
+              "id": "ini_ate_ns",
+              "nombre": "Ateneo de Naturaleza y Sociedad",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "ini_tcn",
+                "ini_tcs"
+              ]
+            },
+            {
+              "id": "ini_ate_art",
+              "nombre": "Ateneo de nuevas expresiones estéticas",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "ini_refl",
+              "nombre": "Reflexión filosófica de la educación",
+              "hs": 32,
+              "campo": "fundamentacion",
+              "correlativas": [
+                "ini_pt3",
+                "ini_ti3",
+                "ini_herr3"
+              ]
+            },
+            {
+              "id": "ini_etico",
+              "nombre": "Dimensión ético-política de la praxis docente",
+              "hs": 32,
+              "campo": "fundamentacion",
+              "correlativas": [
+                "ini_pt3",
+                "ini_ti3",
+                "ini_herr3"
+              ]
+            },
+            {
+              "id": "ini_edi",
+              "nombre": "Espacios de definición institucional",
+              "detalle": "Incluye el Taller propedéutico de opción y definición institucional",
+              "hs": 160,
+              "campo": "trayectos",
+              "fueraDelTotal": true,
+              "correlativas": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "profesorado-educacion-primaria",
+      "tipo": "Profesorados",
+      "nombre": "Profesorado de Educación Primaria",
+      "duracion": "4 años",
+      "detalle": "Título: Profesor/a de Educación Primaria",
+      "notaCorrelatividades": "Para cursar 3.º año hay que tener aprobadas las materias de 1.º; para cursar 4.º, las de 1.º y 2.º. El Campo de Actualización Formativa se acredita por promoción, sin examen final.",
+      "frasePrevias": "tiene como correlativas a ",
+      "campos": [
+        {
+          "clave": "actualizacion",
+          "etiqueta": "Campo de Actualización Formativa",
+          "color": "c5"
+        },
+        {
+          "clave": "subjetividad",
+          "etiqueta": "Campo de la Subjetividad y las Culturas",
+          "color": "c1"
+        },
+        {
+          "clave": "practica",
+          "etiqueta": "Campo de la Práctica Docente",
+          "color": "c4"
+        },
+        {
+          "clave": "saberes",
+          "etiqueta": "Campo de los Saberes a Enseñar",
+          "color": "c3"
+        },
+        {
+          "clave": "fundamentacion",
+          "etiqueta": "Campo de la Fundamentación",
+          "color": "c2"
+        },
+        {
+          "clave": "trayectos",
+          "etiqueta": "Trayectos Formativos Opcionales",
+          "color": "c6"
+        }
+      ],
+      "anios": [
+        {
+          "titulo": "1.º año",
+          "materias": [
+            {
+              "id": "pri_tlyo",
+              "nombre": "Taller de lectura, escritura y oralidad",
+              "hs": 64,
+              "campo": "actualizacion",
+              "correlativas": []
+            },
+            {
+              "id": "pri_tplm",
+              "nombre": "Taller de pensamiento lógico matemático",
+              "hs": 64,
+              "campo": "actualizacion",
+              "correlativas": []
+            },
+            {
+              "id": "pri_tdi",
+              "nombre": "Taller de definición institucional",
+              "hs": 64,
+              "campo": "actualizacion",
+              "correlativas": []
+            },
+            {
+              "id": "pri_psi1",
+              "nombre": "Psicología del desarrollo y el aprendizaje I",
+              "hs": 64,
+              "campo": "subjetividad",
+              "correlativas": []
+            },
+            {
+              "id": "pri_corp",
+              "nombre": "Corporeidad y motricidad",
+              "hs": 32,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "pri_arte1",
+              "nombre": "Arte y educación",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "pri_pt1",
+              "nombre": "Práctica en terreno",
+              "detalle": "Experiencia social en espacios y organizaciones de la comunidad",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": []
+            },
+            {
+              "id": "pri_ti1",
+              "nombre": "Taller Integrador Interdisciplinario",
+              "detalle": "Ciudad educadora",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": []
+            },
+            {
+              "id": "pri_herr1",
+              "nombre": "Herramientas",
+              "detalle": "Educación social y estrategias de educación popular",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": []
+            },
+            {
+              "id": "pri_filo",
+              "nombre": "Filosofía",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": []
+            },
+            {
+              "id": "pri_dgral",
+              "nombre": "Didáctica general",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": []
+            },
+            {
+              "id": "pri_ped",
+              "nombre": "Pedagogía",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": []
+            },
+            {
+              "id": "pri_amc",
+              "nombre": "Análisis del mundo contemporáneo",
+              "hs": 32,
+              "campo": "fundamentacion",
+              "correlativas": []
+            }
+          ]
+        },
+        {
+          "titulo": "2.º año",
+          "materias": [
+            {
+              "id": "pri_psi2",
+              "nombre": "Psicología del desarrollo y el aprendizaje II",
+              "hs": 64,
+              "campo": "subjetividad",
+              "correlativas": [
+                "pri_psi1"
+              ]
+            },
+            {
+              "id": "pri_psoc",
+              "nombre": "Psicología social e institucional",
+              "hs": 32,
+              "campo": "subjetividad",
+              "correlativas": []
+            },
+            {
+              "id": "pri_cce",
+              "nombre": "Cultura, comunicación y educación",
+              "hs": 32,
+              "campo": "subjetividad",
+              "correlativas": []
+            },
+            {
+              "id": "pri_pt2",
+              "nombre": "Práctica en terreno",
+              "detalle": "En instituciones educativas (distintos ámbitos: urbano, suburbano, rural)",
+              "hs": 64,
+              "campo": "practica",
+              "correlativas": [
+                "pri_pt1",
+                "pri_ti1",
+                "pri_herr1"
+              ]
+            },
+            {
+              "id": "pri_ti2",
+              "nombre": "Taller Integrador Interdisciplinario",
+              "detalle": "Espacio escolar y realidad educativa",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": [
+                "pri_pt1",
+                "pri_ti1",
+                "pri_herr1"
+              ]
+            },
+            {
+              "id": "pri_herr2",
+              "nombre": "Herramientas",
+              "detalle": "Aproximación y análisis cualitativo institucional",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": [
+                "pri_pt1",
+                "pri_ti1",
+                "pri_herr1"
+              ]
+            },
+            {
+              "id": "pri_artis",
+              "nombre": "Educación artística",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "pri_dpl1",
+              "nombre": "Didáctica de Prácticas del Lenguaje y la Literatura I",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "pri_tlyo"
+              ]
+            },
+            {
+              "id": "pri_dcs1",
+              "nombre": "Didáctica de las Ciencias Sociales I",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "pri_dcn1",
+              "nombre": "Didáctica de las Ciencias Naturales I",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "pri_dmat1",
+              "nombre": "Didáctica de la Matemática I",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "pri_tsp",
+              "nombre": "Teorías sociopolíticas y educación",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": []
+            },
+            {
+              "id": "pri_dcur",
+              "nombre": "Didáctica y currículum de Nivel Primario",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": [
+                "pri_dgral"
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "3.º año",
+          "materias": [
+            {
+              "id": "pri_config",
+              "nombre": "Configuraciones culturales del sujeto educativo de Primaria",
+              "hs": 32,
+              "campo": "subjetividad",
+              "correlativas": []
+            },
+            {
+              "id": "pri_medios",
+              "nombre": "Medios audiovisuales, TIC’s y educación",
+              "hs": 32,
+              "campo": "subjetividad",
+              "correlativas": []
+            },
+            {
+              "id": "pri_pt3",
+              "nombre": "Práctica en terreno",
+              "detalle": "En el aula, en el nivel de formación",
+              "hs": 128,
+              "campo": "practica",
+              "correlativas": [
+                "pri_pt2",
+                "pri_ti2",
+                "pri_herr2",
+                "pri_dpl1",
+                "pri_dcn1",
+                "pri_dcs1",
+                "pri_dmat1",
+                "pri_dcur"
+              ]
+            },
+            {
+              "id": "pri_ti3",
+              "nombre": "Taller Integrador Interdisciplinario",
+              "detalle": "Relación educativa",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": [
+                "pri_pt2",
+                "pri_ti2",
+                "pri_herr2",
+                "pri_dpl1",
+                "pri_dcn1",
+                "pri_dcs1",
+                "pri_dmat1",
+                "pri_dcur"
+              ]
+            },
+            {
+              "id": "pri_herr3",
+              "nombre": "Herramientas",
+              "detalle": "Investigación en y para la acción educativa",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": [
+                "pri_pt2",
+                "pri_ti2",
+                "pri_herr2",
+                "pri_dpl1",
+                "pri_dcn1",
+                "pri_dcs1",
+                "pri_dmat1",
+                "pri_dcur"
+              ]
+            },
+            {
+              "id": "pri_ef",
+              "nombre": "Educación Física escolar",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": []
+            },
+            {
+              "id": "pri_dpl2",
+              "nombre": "Didáctica de Prácticas del Lenguaje y la Literatura II",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "pri_dpl1"
+              ]
+            },
+            {
+              "id": "pri_dcs2",
+              "nombre": "Didáctica de las Ciencias Sociales II",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "pri_dcs1"
+              ]
+            },
+            {
+              "id": "pri_dcn2",
+              "nombre": "Didáctica de las Ciencias Naturales II",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "pri_dcn1"
+              ]
+            },
+            {
+              "id": "pri_dmat2",
+              "nombre": "Didáctica de la Matemática II",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "pri_dmat1"
+              ]
+            },
+            {
+              "id": "pri_hist",
+              "nombre": "Historia y prospectiva de la educación",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": [
+                "pri_ped"
+              ]
+            },
+            {
+              "id": "pri_pol",
+              "nombre": "Políticas, legislación y administración del trabajo escolar",
+              "hs": 64,
+              "campo": "fundamentacion",
+              "correlativas": [
+                "pri_tsp"
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "4.º año",
+          "nota": "Las 160 hs de Espacios de definición institucional (Trayectos Formativos Opcionales) no se suman al total de 640 hs.",
+          "materias": [
+            {
+              "id": "pri_pcd",
+              "nombre": "Pedagogía crítica de las diferencias",
+              "hs": 32,
+              "campo": "subjetividad",
+              "correlativas": []
+            },
+            {
+              "id": "pri_pt4",
+              "nombre": "Práctica en terreno",
+              "detalle": "En el aula, en el nivel de formación",
+              "hs": 256,
+              "campo": "practica",
+              "correlativas": [
+                "pri_pt3",
+                "pri_ti3",
+                "pri_herr3",
+                "pri_dpl2",
+                "pri_dcs2",
+                "pri_dcn2",
+                "pri_dmat2"
+              ]
+            },
+            {
+              "id": "pri_ti4",
+              "nombre": "Taller Integrador Interdisciplinario",
+              "detalle": "Posicionamiento docente",
+              "hs": 32,
+              "campo": "practica",
+              "correlativas": [
+                "pri_pt3",
+                "pri_ti3",
+                "pri_herr3",
+                "pri_dpl2",
+                "pri_dcs2",
+                "pri_dcn2",
+                "pri_dmat2"
+              ]
+            },
+            {
+              "id": "pri_ate_pl",
+              "nombre": "Ateneo de Prácticas del Lenguaje y la Literatura",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "pri_dpl2"
+              ]
+            },
+            {
+              "id": "pri_ate_cs",
+              "nombre": "Ateneo de Ciencias Sociales",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "pri_dcs2"
+              ]
+            },
+            {
+              "id": "pri_ate_cn",
+              "nombre": "Ateneo de Ciencias Naturales",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "pri_dcn2"
+              ]
+            },
+            {
+              "id": "pri_ate_mat",
+              "nombre": "Ateneo de Matemática",
+              "hs": 64,
+              "campo": "saberes",
+              "correlativas": [
+                "pri_dmat2"
+              ]
+            },
+            {
+              "id": "pri_refl",
+              "nombre": "Reflexión filosófica de la educación",
+              "hs": 32,
+              "campo": "fundamentacion",
+              "correlativas": [
+                "pri_pt3",
+                "pri_ti3",
+                "pri_herr3"
+              ]
+            },
+            {
+              "id": "pri_etico",
+              "nombre": "Dimensión ético-política de la praxis docente",
+              "hs": 32,
+              "campo": "fundamentacion",
+              "correlativas": [
+                "pri_pt3",
+                "pri_ti3",
+                "pri_herr3"
+              ]
+            },
+            {
+              "id": "pri_edi",
+              "nombre": "Espacios de definición institucional",
+              "detalle": "Incluye el Taller propedéutico de opción y definición institucional",
+              "hs": 160,
+              "campo": "trayectos",
+              "fueraDelTotal": true,
+              "correlativas": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  var DATOS = JSON.parse(document.getElementById('datos').textContent);
+  var AYUDA_INICIAL = 'Tocá una materia para ver sus correlatividades.';
+  var AYUDA_TIP = 'Amarillo: correlativa previa. Verde: materia que habilita. Tocá de nuevo para limpiar.';
+
+  var $ = function (id) { return document.getElementById(id); };
+  var inicio = $('inicio'), plan = $('plan'), ayuda = $('ayuda');
+  var carreraActual = null, seleccion = null, porId = {}, todas = {}, conCorr = true;
+
+  function el(tag, cls, txt) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (txt != null) e.textContent = txt;
+    return e;
+  }
+
+  // ---------- Inicio ----------
+  function dibujarInicio() {
+    var lista = $('listaCarreras');
+    lista.innerHTML = '';
+    var grupo = null;
+    DATOS.carreras.forEach(function (c) {
+      if (c.tipo && c.tipo !== grupo) {
+        grupo = c.tipo;
+        lista.appendChild(el('h2', 'grupo', grupo));
+      }
+      var b = el('button', 'carrera-btn', c.nombre);
+      b.type = 'button';
+      b.appendChild(el('small', null, 'Duración: ' + c.duracion));
+      b.addEventListener('click', function () { location.hash = '#/' + c.id; });
+      lista.appendChild(b);
+    });
+  }
+
+  // ---------- Años y materias ----------
+  function totalHoras(a) {
+    return a.materias.reduce(function (s, m) { return s + (m.fueraDelTotal ? 0 : m.hs); }, 0) + (a.horasAdicionales || 0);
+  }
+
+  function dibujarAnios(cont, anios, c) {
+    var color = {};
+    c.campos.forEach(function (k) { color[k.clave] = k.color; });
+    cont.innerHTML = '';
+    anios.forEach(function (a) {
+      var sec = el('section', 'anio');
+      var h = el('h3', null, a.titulo);
+      h.appendChild(el('span', null, 'Total: ' + totalHoras(a) + ' hs'));
+      sec.appendChild(h);
+      if (a.nota) sec.appendChild(el('p', 'anio-nota', a.nota));
+      var grid = el('div', 'materias');
+      a.materias.forEach(function (m) {
+        var b = el(conCorr ? 'button' : 'div', conCorr ? 'materia' : 'materia estatica');
+        var u = Math.max(1, Math.round(m.hs / 32));
+        b.style.setProperty('--u', u);
+        b.style.setProperty('--c', 'var(--' + color[m.campo] + ')');
+        b.dataset.u = u;
+        if (m.detalle) b.classList.add('con-det');
+        if (conCorr) {
+          b.type = 'button';
+          b.dataset.id = m.id;
+          b.addEventListener('click', function () { elegir(m.id); });
+        }
+        var nom = el('span', 'nom', m.nombre);
+        var top = el('span');
+        top.appendChild(nom);
+        if (m.detalle) top.appendChild(el('span', 'det', m.detalle)).style.display = 'block';
+        b.appendChild(top);
+        b.appendChild(el('span', 'hs', m.hs + ' hs'));
+        grid.appendChild(b);
+      });
+      sec.appendChild(grid);
+      cont.appendChild(sec);
+    });
+  }
+
+  // ---------- Plan de una carrera ----------
+  function mostrarCarrera(c, oid, conservar) {
+    var selPrevia = conservar ? seleccion : null;
+    carreraActual = c; seleccion = null; porId = {}; todas = {};
+    conCorr = c.correlatividades !== false;
+    var orientaciones = c.orientaciones || [];
+    var o = orientaciones.filter(function (x) { return x.id === oid; })[0] || null;
+
+    c.anios.concat(o ? o.anios : []).forEach(function (a) {
+      a.materias.forEach(function (m) { porId[m.id] = m; });
+    });
+    // todas las materias de la carrera (también las de orientaciones no desplegadas),
+    // para poder decir qué habilita una materia aunque todavía no se vea
+    c.anios.forEach(function (a) { a.materias.forEach(function (m) { todas[m.id] = { m: m, orient: null, anio: a.titulo }; }); });
+    orientaciones.forEach(function (x) {
+      x.anios.forEach(function (a) { a.materias.forEach(function (m) { todas[m.id] = { m: m, orient: x.nombre, anio: a.titulo }; }); });
+    });
+    if (selPrevia && porId[selPrevia]) seleccion = selPrevia;
+
+    $('tituloCarrera').textContent = c.nombre;
+    $('subCarrera').textContent = 'Duración: ' + c.duracion + (c.detalle ? ' · ' + c.detalle : '');
+    $('notaCarrera').hidden = !c.notaCarrera;
+    $('notaCarrera').textContent = c.notaCarrera || '';
+    $('notaCorr').hidden = !c.notaCorrelatividades;
+    $('notaCorr').textContent = c.notaCorrelatividades || '';
+
+    var ley = $('leyenda');
+    ley.innerHTML = '';
+    var usados = {};
+    Object.keys(porId).forEach(function (i) { usados[porId[i].campo] = true; });
+    c.campos.filter(function (k) { return usados[k.clave]; }).forEach(function (k) {
+      var s = el('span');
+      var d = el('i', 'dot'); d.style.background = 'var(--' + k.color + ')';
+      s.appendChild(d); s.appendChild(document.createTextNode(k.etiqueta));
+      ley.appendChild(s);
+    });
+
+    ayuda.hidden = !conCorr;
+    dibujarAnios($('anios'), c.anios, c);
+
+    // Orientaciones
+    var sec = $('orient');
+    sec.hidden = !orientaciones.length;
+    var btns = $('orientBtns'), cont = $('orientPlan');
+    btns.innerHTML = ''; cont.innerHTML = '';
+    orientaciones.forEach(function (x) {
+      var b = el('button', 'orient-btn', x.nombre);
+      b.type = 'button';
+      b.setAttribute('aria-pressed', o && o.id === x.id ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        location.hash = (o && o.id === x.id) ? '#/' + c.id : '#/' + c.id + '/' + x.id;
+      });
+      btns.appendChild(b);
+    });
+    if (o) {
+      cont.appendChild(el('h3', 'orient-t2', 'Orientación ' + o.nombre));
+      if (o.anios && o.anios.length) {
+        var d = el('div');
+        cont.appendChild(d);
+        dibujarAnios(d, o.anios, c);
+      } else {
+        cont.appendChild(el('p', 'proximo', 'El plan de 3.º y 4.º año de esta orientación se está cargando. Próximamente.'));
+      }
+    }
+    pintar();
+  }
+
+  function elegir(id) {
+    seleccion = (seleccion === id) ? null : id;
+    pintar();
+  }
+
+  // Nombre con el año cuando la materia se repite (p. ej. "Práctica en terreno"),
+  // y con la orientación cuando conOrient es true y la materia es de una orientación.
+  function etiqueta(id, conOrient) {
+    var t = todas[id], repetida = false;
+    Object.keys(todas).forEach(function (o) {
+      var e = todas[o];
+      if (o !== id && e.m.nombre === t.m.nombre &&
+          (e.orient === t.orient || e.orient === null || t.orient === null)) repetida = true;
+    });
+    var partes = [];
+    if (conOrient && t.orient) partes.push(t.orient);
+    if (repetida) partes.push(t.anio);
+    return t.m.nombre + (partes.length ? ' (' + partes.join(', ') + ')' : '');
+  }
+
+  function nombres(ids) {
+    return ids.filter(function (i) { return todas[i]; })
+      .map(function (i) { return etiqueta(i, true); }).join(', ');
+  }
+
+  function pintar() {
+    if (!conCorr) { plan.classList.remove('con-seleccion'); return; }
+    var req = [], hab = [];
+    if (seleccion) {
+      req = porId[seleccion].correlativas;
+      Object.keys(todas).forEach(function (id) {
+        if (todas[id].m.correlativas.indexOf(seleccion) !== -1) hab.push(id);
+      });
+    }
+    plan.classList.toggle('con-seleccion', !!seleccion);
+    var botones = plan.querySelectorAll('.materia');
+    for (var i = 0; i < botones.length; i++) {
+      var b = botones[i], id = b.dataset.id;
+      b.classList.toggle('sel', id === seleccion);
+      b.classList.toggle('req', req.indexOf(id) !== -1);
+      b.classList.toggle('hab', hab.indexOf(id) !== -1);
+      b.setAttribute('aria-pressed', id === seleccion ? 'true' : 'false');
+    }
+
+    ayuda.innerHTML = '';
+    ayuda.classList.toggle('invita', !seleccion);
+    if (!seleccion) {
+      ayuda.appendChild(el('div', null, AYUDA_INICIAL));
+      var t0 = el('div', 'tip', 'Se pintan en amarillo las que tenés que tener antes y en verde las que esa materia habilita.');
+      ayuda.appendChild(t0);
+      return;
+    }
+    var m = porId[seleccion];
+    var p1 = el('div');
+    p1.appendChild(el('b', null, etiqueta(seleccion, false) + ': '));
+    p1.appendChild(document.createTextNode(req.length
+      ? (carreraActual.frasePrevias || 'para aprobarla necesitás tener aprobada ') + nombres(req) + '.'
+      : 'no tiene correlativas previas.'));
+    ayuda.appendChild(p1);
+    var p2 = el('div');
+    p2.appendChild(document.createTextNode(hab.length
+      ? 'Es requisito para: ' + nombres(hab) + '.'
+      : 'No es requisito de ninguna otra materia.'));
+    ayuda.appendChild(p2);
+    var p3 = el('div');
+    p3.className = 'tip';
+    p3.textContent = AYUDA_TIP;
+    ayuda.appendChild(p3);
+  }
+
+  // ---------- Navegación por hash: #/carrera  o  #/carrera/orientacion ----------
+  var idPrevio = null;
+  function ruta() {
+    var partes = location.hash.replace(/^#\//, '').split('/');
+    var c = DATOS.carreras.filter(function (x) { return x.id === partes[0]; })[0];
+    if (c) {
+      inicio.hidden = true; plan.hidden = false;
+      document.title = c.nombre + ' · ISFDyT N.º 166';
+      mostrarCarrera(c, partes[1], idPrevio === c.id);
+      if (partes[1] && $('orientPlan').firstChild) {
+        $('orientPlan').scrollIntoView({ block: 'start' });
+      } else if (idPrevio !== c.id) {
+        window.scrollTo(0, 0);
+      }
+      idPrevio = c.id;
+    } else {
+      plan.hidden = true; inicio.hidden = false;
+      document.title = 'Carreras · ISFDyT N.º 166';
+      idPrevio = null;
+    }
+  }
+
+  $('volver').addEventListener('click', function () { location.hash = ''; });
+  window.addEventListener('hashchange', ruta);
+  dibujarInicio();
+  ruta();
+})();
+</script>
+</body>
+</html>
